@@ -1,0 +1,39 @@
+﻿@page "{Id:int}"
+@model RabbitRegister.Pages.Main.Product.DeleteYarnModel
+@{
+    ViewData["Title"] = "Slet Garn";
+}
+
+<h1>Bekræftelse Af Sletning</h1>
+
+<h3>Er du sikker på du vil slette dette Garn?</h3>
+<div>
+    <h4>Sletter...</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Yarn.ProductId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Yarn.ProductId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Yarn.ProductType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Yarn.ProductType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model1 => Model1.Yarn.ProductName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model1 => Model1.Yarn.ProductName)
+        </dd>
+    </dl>
+
+	<form method="post">
+        <input type="hidden" asp-for="Yarn.ProductId" />
+		<button type="submit" class="btn btn-danger">Ja</button>
+		<a class="btn btn-primary" asp-page="/Main/Product/GetAllYarn">Nej</a>
+	</form>
+</div>

@@ -1,0 +1,114 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Rabbit.GetAllRabbitsModel
+@{
+}
+
+<link rel="stylesheet" href="/css/rabbitSite.css" />
+
+<!--  Side menu, Create kanpper -->
+
+
+<div class="d-flex justify-content-between">
+    <div class="d-flex flex-row">
+        <div class="p-2 bd-highlight">
+            <a class="btn-create btn" asp-page="CreateRabbit">Opret Kanin</a>
+        </div>
+        <div class="p-2 bd-highlight">
+            <a class="btn-create btn" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
+        </div>
+    </div>
+</div>
+<br />
+
+<!-- Knap til offcanvas sidebar -->
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterRabbits">
+    Filter funktioner
+</button>
+
+<h2 class="text-center">Mine Kaniner:</h2>
+<br />
+
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start" id="filterRabbits">
+    <div class="offcanvas-header">
+        <h1 class="offcanvas-title">Filter funktioner</h1>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Hidtil implementerede søgefunktioner for kaniner</p>
+        <ul class="nav nav-pills flex-column list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<br />
+
+
+<!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
+<body>
+    <div>
+        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+            @if (@Model.Rabbits != null)
+            {
+                foreach (var Rabbit in Model.Rabbits)
+                {
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+
+                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
+                            <div class="d-flex flex-row">
+                                <div>
+                                    @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
+                                    {
+                                        <img class="card-image" src="\Images\MissingImg.jpg">
+                                    }
+                                    else
+                                    {
+                                        <img class="card-image" src="@Rabbit.ImageString">
+                                    }
+                                </div>
+                                <table class="table table-opacity">
+                                    <tr>
+                                        <th>Ejer:</th>
+                                        <td>@Rabbit.Owner</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kanin ID:</th>
+                                        <td>@Rabbit.RabbitRegNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Avler ID:</th>
+                                        <td>@Rabbit.BreederRegNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Navn:</th>
+                                        <td>@Rabbit.Name</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 5px;">
+                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</body>

@@ -1,0 +1,111 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Product.GetAllWoolModel
+@{
+ }
+
+    
+<body>
+	<!-- Product(Wool) Table on page-->
+	<h2 class="text-center">Mine Uld-produkter</h2>
+
+	<div class="d-flex justify-content-between">
+    <div class="d-flex flex-row">
+        <div class="p-2 bd-highlight">
+            <a class="btn-create btn" asp-page="CreateWool">Opret Uld</a>
+        </div>       
+    </div>
+    </div>
+
+
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr class="@*btn-secondary active*@">
+					<th>
+						Avler ID
+					</th>
+					<th>
+						Product ID
+					</th>
+					<th>
+						Type
+					</th>
+					<th>
+						Titel
+					</th>
+					<th>
+						Vægt (gram)
+					</th>
+					<th>
+						Kvalitet
+					</th>
+					<th>
+						Farve
+					</th>
+					<th>
+						Antal
+					</th>
+					<th>
+						Pris (kr.)
+					</th>
+@*					<th>
+						ImgString
+					</th>*@
+					<th>
+						Billed
+					</th>
+					<th>
+						Edit | Delete
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Wools != null)
+				{
+					foreach (var wool in Model.Wools)
+					{
+						<tr class="@*btn-secondary*@">
+							<td style="vertical-align:middle"  >
+								@wool.BreederRegNo
+							</td style="vertical-align:middle">
+							<td style="vertical-align:middle">
+								@wool.ProductId
+							</td>
+							<td style="vertical-align:middle">
+								@wool.ProductType
+							</td>
+							<td style="vertical-align:middle">
+								@wool.ProductName
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Weight
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Quality
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Color
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Amount
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Price
+							</td>
+@*							<td style="vertical-align:middle">
+								@wool.ImgString
+							</td>*@
+							<td>
+								<img src="@wool.ImgString" style="max-width: 100px; height: auto">
+							</td>
+							<td>
+								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@wool.ProductId"><i class="fa fa-edit"></i></a>
+								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@wool.ProductId"><i class="fa fa-trash"></i></a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+
+	</div>
+</body>
