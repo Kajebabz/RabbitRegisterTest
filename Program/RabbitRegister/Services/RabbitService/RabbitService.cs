@@ -15,7 +15,6 @@ namespace RabbitRegister.Services.RabbitService
             _dbGenericService = dbGenericService;
             //_rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
 
-            _rabbits = GetAllRabbits();
             //_rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
             //foreach (var rabbit in _rabbits)
             //{
