@@ -16,13 +16,15 @@ namespace RabbitRegister.Services.TrimmingService
 		private DbGenericService<Trimming> DbGenericService;
 		private IRabbitService RabbitService; 
 
+		public TrimmingService() { }
+
 		public TrimmingService(DbGenericService<Trimming> dbGenericService, IRabbitService rabbitService)
 		{
 			DbGenericService = dbGenericService;
 			RabbitService = rabbitService;
 			_trimmings = DbGenericService.GetObjectsAsync().Result.ToList();
 
-			//_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+			_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
 			//foreach (var trimming in _trimmings)
 			//{
 			//	DbGenericService.AddObjectAsync(trimming).Wait();

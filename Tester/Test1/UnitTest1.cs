@@ -19,7 +19,7 @@ namespace Test1
         [TestMethod]
         public void Test_GetAllRabbits()
         {
-            int count = _rabbitService.GetAllRabbits(1, 5095).Count();
+            int count = _rabbitService.GetAllRabbits().Count;
 
             Assert.IsTrue(count == 8);
         }

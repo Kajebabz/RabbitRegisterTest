@@ -6,7 +6,7 @@ namespace RabbitRegister.Services.RabbitService
 {
     public class RabbitService : IRabbitService
     {
-        private List<Rabbit> _rabbits;
+        public static List<Rabbit> _rabbits;
 
         private DbGenericService<Rabbit> _dbGenericService;
 
@@ -25,13 +25,15 @@ namespace RabbitRegister.Services.RabbitService
 
         public List<Rabbit> GetAllRabbits()
         {
-            return MockData.MockRabbit.GetMockRabbits().ToList();
+            return MockRabbit.GetMockRabbits().ToList();
         }
 
         public RabbitService()
         {
-
+            _rabbits = GetAllRabbits();
         }
+
+
 
         public async Task AddRabbitAsync(Rabbit rabbit)
         {
@@ -41,7 +43,7 @@ namespace RabbitRegister.Services.RabbitService
 
         public Rabbit GetRabbit(int id, int breederRegNo)
         {
-            return _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
+            return _rabbits.Find(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
         }
 
         public List<Rabbit> GetAllRabbits(int id, int breederRegNo)
