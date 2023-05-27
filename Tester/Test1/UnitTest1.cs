@@ -24,6 +24,21 @@ namespace Test1
             _rabbitService = new RabbitService(_mockDbService.Object);
         }
 
+        [TestMethod]
+        public void Test_GetRabbit()
+        {
+            // Arrange
+            int RabbitRegNo = 1;
+            int BreederRegNo = 5095;
+
+            // Act
+            Rabbit rabbit = _rabbitService.GetRabbit(RabbitRegNo, BreederRegNo);
+
+            // Assert
+            Assert.IsNotNull(rabbit);
+            var expected = "Kaliba";
+            Assert.AreEqual(expected, rabbit.Name);
+        }
 
         [TestMethod]
         public void Test_GetOwnedAliveRabbits()
@@ -39,17 +54,5 @@ namespace Test1
             var expected = 4;
             Assert.AreEqual(expected, ownedAliveRabbit.Count);
         }
-
-        [TestMethod]
-        public void Test_GetRabbit()
-        {
-            Rabbit rabbit = _rabbitService.GetRabbit(1, 5095);
-
-            Assert.IsNotNull(rabbit);
-            var expected = "Kaliba";
-            Assert.AreEqual(expected, rabbit.Name);
-        }
-
-
     }
 }
