@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitRegister", "RabbitRegister\RabbitRegister.csproj", "{9692B3E1-7E2B-45B4-A984-7CA18308B191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test1", "..\Tester\Test1\Test1.csproj", "{246ED5D4-8054-4AC1-978E-FCB83AAE3016}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitRegTests", "..\Tester\Test1\RabbitRegTests.csproj", "{246ED5D4-8054-4AC1-978E-FCB83AAE3016}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,7 +24,7 @@ namespace RabbitRegister.Services.TrimmingService
 			RabbitService = rabbitService;
 			_trimmings = DbGenericService.GetObjectsAsync().Result.ToList();
 
-			_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+			//_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
 			//foreach (var trimming in _trimmings)
 			//{
 			//	DbGenericService.AddObjectAsync(trimming).Wait();
