@@ -30,6 +30,9 @@ namespace Test2
             _mockDbTrimmingService.Setup(
                 x => x.GetObjectsAsync()).ReturnsAsync(mockTrimmings);
 
+            _mockDbTrimmingService.Setup(
+                x => x.AddObjectAsync(It.IsAny<Trimming>()));
+
             _trimmingService = new TrimmingService(_mockDbTrimmingService.Object, _mockRabbitService.Object);
         }
 
@@ -75,6 +78,19 @@ namespace Test2
             // Assert
             var expected = 10;
             Assert.AreEqual(expected, trimmingsByOwnerId.Count);
+        }
+
+        [TestMethod]
+        public void Test_AddTrimmingAsync()
+        {
+            // Arrange
+            var trimming = new Trimming(1, 5095, "Fnugi", new DateTime(), 65, 6, 18, 85, 75, 20);
+
+            // Act 
+            _trimmingService.AddTrimmingAsync(trimming);
+
+            // Assert
+            _mockDbTrimmingService.Verify(x => x.AddObjectAsync(trimming), Times.Once());
         }
     }
 }

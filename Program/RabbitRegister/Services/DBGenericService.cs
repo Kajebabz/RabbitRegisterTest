@@ -13,7 +13,7 @@ namespace RabbitRegister.Services
             }
         }
 
-        public async Task AddObjectAsync(T obj)
+        public virtual async Task AddObjectAsync(T obj)
         {
             using (var context = new ItemDbContext())
             {
